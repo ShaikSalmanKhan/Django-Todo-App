@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Todo</title>
+    <!-- including bootstrap in the file -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          rel="stylesheet">
+</head>
+<body>
+        <h3> Todo App </h3>
+        <!-- --------------------Creating Todos using ModelForm-------------------------- -->
+        <form method="post" action="">
+                {% csrf_token %}
+                {{create_todo.todo_name}}
+                 <input type="submit" value="Create">
+        </form>
+        <!-- --------------------Displaying Todos-------------------------- -->
+        {% if todos|length != 0 %}
+            <!--using a for loop to iterate over the todos object-->
+            {% for todo in todos %}
+                    <br>
+                    <a href="{% url 'update' todo.id %}" class="btn btn-primary  btn-sm">Update</a>
+                    <a href="{% url 'delete' todo.id %}" class="btn btn-danger  btn-sm">Delete</a>
+                    {% if todo.todo_completed == True %}
+                          <strike>{{todo.todo_name}}</strike>
+                    {% else %}
+                            {{todo.todo_name}}
+                    {% endif %}
+                    <br>
+            {% endfor %}
+        {% else %}
+            <h4>No Records Found</h4>
+        {% endif %}
+</body>
+</html>

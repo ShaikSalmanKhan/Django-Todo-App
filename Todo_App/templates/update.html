@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3> Update Todo </h3>
+        <!-- --------------------Creating Todos using ModelForm-------------------------- -->
+        <form method="post" action="">
+                {% csrf_token %}
+                Todo Name : {{update_todo.todo_name}} <br>
+                Completed : {{update_todo.todo_completed}}<br>
+                 <input type="submit">
+        </form>
+
+</body>
+</html>
